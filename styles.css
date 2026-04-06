@@ -1,0 +1,541 @@
+/* ========== RESET & BASE ========== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success: #16a34a;
+  --success-hover: #15803d;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ========== HEADER ========== */
+header {
+  background: linear-gradient(135deg, var(--primary), #7c3aed);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+header .tagline {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 0.25rem;
+}
+
+/* ========== MAIN & SECTIONS ========== */
+main {
+  max-width: 700px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+section {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ========== SCANNER ========== */
+#scanner-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 4 / 3;
+}
+
+#camera-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#scanner-canvas {
+  display: none;
+}
+
+#scan-line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: scan 2s ease-in-out infinite;
+  display: none;
+}
+
+@keyframes scan {
+  0%, 100% { top: 30%; }
+  50% { top: 70%; }
+}
+
+#scanner-controls {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#manual-entry {
+  margin-top: 1rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+#manual-entry p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.manual-input-group {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.manual-input-group input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.manual-input-group input:focus {
+  border-color: var(--primary);
+}
+
+.status-bar {
+  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: slideUp 0.3s ease;
+}
+
+.status-bar.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-bar.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-bar.info {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== BADGE ========== */
+.badge {
+  background: var(--primary);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+/* ========== CART TABLE ========== */
+.empty-state {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-muted);
+}
+
+.empty-state p:first-child {
+  font-size: 1.5rem;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+#cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding: 0.5rem 0.6rem;
+  border-bottom: 2px solid var(--border);
+}
+
+#cart-table td {
+  padding: 0.65rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+#cart-table .item-name {
+  font-weight: 600;
+}
+
+#cart-table .item-barcode {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.qty-controls button {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.qty-controls button:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.qty-controls span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.btn-remove:hover {
+  background: #fee2e2;
+}
+
+/* ========== BILLING ========== */
+#bill-details {
+  margin-bottom: 1.25rem;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.bill-row.total {
+  border-top: 2px solid var(--text);
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.billing-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: var(--text);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #cbd5e1;
+}
+
+.btn-success {
+  background: var(--success);
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: var(--success-hover);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger-hover);
+}
+
+.btn-large {
+  padding: 0.8rem 2rem;
+  font-size: 1.05rem;
+  flex: 1;
+}
+
+/* ========== MODAL ========== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.payment-success {
+  text-align: center;
+}
+
+.payment-success .checkmark {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.payment-success h2 {
+  justify-content: center;
+}
+
+.payment-success p {
+  margin-top: 0.25rem;
+}
+
+.payment-success button {
+  margin-top: 1.25rem;
+}
+
+/* ========== RECEIPT ========== */
+.receipt {
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  max-width: 380px;
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 1px dashed #999;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.receipt-header h3 {
+  font-size: 1.1rem;
+}
+
+.receipt-items {
+  border-bottom: 1px dashed #999;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.receipt-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.15rem 0;
+}
+
+.receipt-totals .receipt-item {
+  padding: 0.2rem 0;
+}
+
+.receipt-totals .receipt-grand-total {
+  font-weight: bold;
+  font-size: 1rem;
+  border-top: 1px dashed #999;
+  padding-top: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 0.75rem;
+  border-top: 1px dashed #999;
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.receipt button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* ========== UTILITIES ========== */
+.hidden {
+  display: none !important;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 500px) {
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  section {
+    padding: 1rem;
+  }
+
+  .billing-actions {
+    flex-direction: column;
+  }
+
+  .btn-large {
+    width: 100%;
+  }
+}
+
+/* ========== PRINT ========== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #receipt-modal,
+  #receipt-modal * {
+    visibility: visible;
+  }
+
+  #receipt-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+  }
+
+  .modal-content button {
+    display: none;
+  }
+}
