@@ -24,5 +24,5 @@ const PRODUCTS = {
   "0123456789018": { name: "Chips 150 g",             price: 30.00,  category: "Snacks" },
   "0123456789019": { name: "Cold Drink 750 ml",       price: 40.00,  category: "Beverages" },
   "8906168990042": { name: "Pilot Pen Refill Blue",   price: 20.00,  category: "Stationery" },
-  "4902505442889":  { name: "Pilot Pen Blue",          price: 80.00,  category: "Stationery" },
-};
+  "4902505442889":  { name: "Pilot Pen Blue",          price: 80.00,  category: "Stationery" },  "8901058015171": { name: "KitKat",                  price: 20.00,  category: "Snacks" },
+  "8901491504782": { name: "Lays Hot n Sweet Chilli",  price: 20.00,  category: "Snacks" },};
