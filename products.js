@@ -23,4 +23,6 @@ const PRODUCTS = {
   "0123456789017": { name: "Biscuit Pack 300 g",      price: 40.00,  category: "Snacks" },
   "0123456789018": { name: "Chips 150 g",             price: 30.00,  category: "Snacks" },
   "0123456789019": { name: "Cold Drink 750 ml",       price: 40.00,  category: "Beverages" },
+  "8906168990042": { name: "Pilot Pen Refill Blue",   price: 20.00,  category: "Stationery" },
+  "490250442889":  { name: "Pilot Pen Blue",          price: 80.00,  category: "Stationery" },
 };
